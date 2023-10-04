@@ -28,6 +28,23 @@ services:
       - datos_nessus:/opt/nessus/var/nessus
     networks:
       - net
+   netdata:
+    image: netdata/netdata
+    container_name: netdata
+    hostname: netdata
+    ports:
+      - "19999:19999"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
+    environment:
+      - NETDATA_CLAIM_TOKEN=your-claim-token
+    cap_add:
+      - SYS_PTRACE
+    restart: unless-stopped
 networks:
   net:
 volumes:
