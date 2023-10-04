@@ -1,8 +1,11 @@
 # Utiliza la imagen base de Ubuntu 22.04 (o la versión que desees)
 FROM ubuntu:22.04
 
+RUN apt update -y
+RUN apt install nginx -y
+
 # Actualiza el sistema y luego instala Nginx
-RUN apt-get update && apt-get install -y nginx
+COPY proyecto_boostrap/* /usr/share/nginx/html
 
 # Expón el puerto 80 para que Nginx sea accesible desde fuera del contenedor
 EXPOSE 80

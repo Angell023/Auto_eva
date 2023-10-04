@@ -7,7 +7,7 @@ services:
     ports:
       - "82:80"
     volumes:
-      - "./volapp/web/:/etc/nginx/conf.d/"
+       - "$PWD/volapp/web:/usr/share/nginx/html"
     networks:
       - net
    jenkins:
